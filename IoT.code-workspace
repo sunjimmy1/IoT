@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "Accelerometer"
+		},
+		{
+			"path": "LoRaConnect"
+		},
+		{
+			"path": "SoundSensor"
+		},
+		{
+			"path": "TemperatureSensor"
+		},
+		{
+			"path": "UltrasonicSensor"
+		}
+	],
+	"settings": {}
+}
