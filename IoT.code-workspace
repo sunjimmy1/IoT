@@ -14,6 +14,13 @@
 		},
 		{
 			"path": "UltrasonicSensor"
+		},
+		{
+			"path": "LoRaConnectSound"
+		},
+		{
+			"name": "AllSensors",
+			"path": "AllSensors"
 		}
 	],
 	"settings": {}
