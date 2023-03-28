@@ -1,4 +1,5 @@
 #include <math.h>
+#include <Wire.h>
 #include "LSM6DS3.h"
 #include "mQsparkT.hpp"
 
@@ -15,7 +16,8 @@ const int pinTempSensor = A5;
 const int pinSoundSensor = A0;
 const int delayTime = 2500;
 Ultrasonic ultrasonic(4);
-
+LSM6DS3 myIMU(I2C_MODE, 0x6A);    //I2C device address 0x6A
+float gyro[3], accel[3];
 long defaultBaudRate = 19200;
 int joined = 0;
 

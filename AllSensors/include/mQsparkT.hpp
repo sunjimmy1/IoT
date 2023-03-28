@@ -5,12 +5,6 @@
 #include <LSM6DS3.h>
 #include <Wire.h>
 
-LSM6DS3 myIMU(I2C_MODE, 0x6A);    //I2C device address 0x6A
-float aX, aY, aZ, gX, gY, gZ;
-const float accelerationThreshold = 2.5; // threshold of significant in G's
-const int numSamples = 119;
-int samplesRead = numSamples;
-
 /*!
 * \Method to initialize the MQSpark. Will initialize serial connection between host and the board and between board and module
 * Will set up OTAA credentials as well as power up muRata module.
@@ -77,3 +71,11 @@ String lppSound(long s);
 int readDistance(Ultrasonic Ultrasonic);
 
 String lppDistance(int dist);
+
+void readAccel(LSM6DS3 sensor, float &x, float &y, float &z);
+
+void readGyro(LSM6DS3 sensor, float &x, float &y, float &z);
+
+String lppAccel(float accel[3]);
+
+String lppGyro(float gyro[3]);

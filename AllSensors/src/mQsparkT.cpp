@@ -204,6 +204,8 @@ int readDistance(Ultrasonic ultrasonic)
   return ultrasonic.MeasureInInches();
 }
 
+
+
 String lppDistance(int dist){
     //converts sensor reading to LPP format
     //convert to hex and LPP
@@ -216,4 +218,48 @@ String lppDistance(int dist){
     return "0000" + String(distHex); //adds channel and data type header to string
 }
 
+void readAccel(LSM6DS3 sensor, float &x, float &y, float &z){
+    x = sensor.readFloatAccelX();
+    y = sensor.readFloatAccelY();
+    z = sensor.readFloatAccelZ();
+}
 
+void readGyro(LSM6DS3 sensor, float &x, float &y, float &z){
+    x = sensor.readFloatGyroX();
+    y = sensor.readFloatGyroY();
+    z = sensor.readFloatGyroZ();
+}
+
+String lppAccel(float accel[3]){
+    //converts sensor reading to LPP format
+    //convert to hex and LPP
+    int16_t x = int16_t(accel[0]*1000);
+    int16_t y = int16_t(accel[1]*1000);
+    int16_t z = int16_t(accel[2]*1000);
+    Serial.println(String(x));
+    Serial.println(String(y));
+    Serial.println(String(z));
+    char accelHex[17]={0};
+    sprintf(accelHex, "%.4X%.4X%.4X", x, y, z);
+    Serial.print("Accel: ");
+    Serial.print(accelHex);
+    Serial.print("\n");
+    return "0071" + String(accelHex); //adds channel and data type header to string
+}
+
+String lppGyro(float gyro[3]){
+    //converts sensor reading to LPP format
+    //convert to hex and LPP
+    int16_t x = int16_t(abs(gyro[0]*100));
+    int16_t y = int16_t(abs(gyro[1]*100));
+    int16_t z = int16_t(abs(gyro[2]*100));
+    Serial.println(String(x));
+    Serial.println(String(y));
+    Serial.println(String(z));
+    char gyroHex[17]={0};
+    sprintf(gyroHex, "%.4X%.4X%.4X", x, y, z);
+    Serial.print("Gyro: ");
+    Serial.print(gyroHex);
+    Serial.print("\n");
+    return "0086" + String(gyroHex); //adds channel and data type header to string
+}
